@@ -30,7 +30,9 @@ def find_movie(update, context):
             keyboard = InlineKeyboardButton(movie["title"], callback_data=movie["id"])
             keyboards.append([keyboard])
         reply_markup = InlineKeyboardMarkup(keyboards)
-        search_results.edit_text('Here Is What I Found...', reply_markup=reply_markup)
+        l = await search_results.edit_text('Here Is What I Found...', reply_markup=reply_markup)
+        await asyncio.sleep(30)
+        await l.delete()
     else:
         search_results.edit_text('Sorry No Results Are Found')
 
